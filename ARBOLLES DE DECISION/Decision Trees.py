@@ -1,6 +1,15 @@
-from sklearn import tree
-X = [[0, 0], [1, 1],[0,1]]
-Y = [0, 1,0]
-clf = tree.DecisionTreeClassifier()
-clf = clf.fit(X, Y)
-print(clf.predict([[3,0]]))	
+import numpy as numpy
+import pandas as pd
+
+
+from sklearn.tree import DecisionTreeClassifier
+
+df=pd.read_csv('data.csv')
+print(df.head)
+x_train=df.loc[:,'buying':'safety']
+y_train=df.loc[:,'values']
+tree=DecisionTreeClassifier(max_leaf_nodes=3,random_state=0)
+tree.fit(x_train,y_train)
+
+prediction =tree.predict([[4,3,2,1,2,3]])
+print(prediction)
